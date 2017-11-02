@@ -16,6 +16,15 @@ public class Collections {
     Random rnd = new Random();
     rnd.setSeed(252);
     
+    int[][] matrix = new int[3][4];
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = 0; j < matrix[0].length; j++) {
+        matrix[i][j] = rnd.nextInt(10);
+        System.out.printf("%5s", matrix[i][j]);
+      }
+      System.out.println("");
+    }
+    
     System.out.println("\nArray");
     String[] nameArr = new String[5];
     int[] gradeArr = new int[5];
@@ -52,7 +61,7 @@ public class Collections {
     
     /*--------------------------------*/
     System.out.println("\nHashSet");
-    HashSet<Student> gbSet=new HashSet<>();
+    HashSet<Student> gbSet = new HashSet();
     for (int i = 0; i < 5; i++) {
       Student s = new Student(person.name().firstName(), 60 + rnd.nextInt(40));
       gbSet.add(s);
