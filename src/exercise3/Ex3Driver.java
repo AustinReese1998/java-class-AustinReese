@@ -49,12 +49,18 @@ public class Ex3Driver {
    * @param matrix to print
    */
   public static void printMatrix(int[][] matrix) {
+    int rows = 0;
+    int cols = 0;
     for (int[] row: matrix) {
       for (int item: row) {
+        ++cols;
         System.out.printf("%5d", item);
       }
+      ++rows;
       System.out.printf("%n");
     }
+    cols = cols / rows;
+    System.out.printf("Matrix is %1d by %1d%n",cols,rows);
   }
   /**
    * Write a matrix to the file
@@ -72,20 +78,50 @@ public class Ex3Driver {
    * @throws java.io.FileNotFoundException
    */
   public static int[][] readFile(String filename) throws FileNotFoundException {
-    try {
+      int rows = 0;
+      int col = 0;
+      
+      try {
         File file = new File(filename);
         Scanner scn = new Scanner(file);
+        boolean firstComplete = false;
         while (scn.hasNextLine()){
-            String line = scn.nextLine();
-            System.out.println(line);
-        }
-    }
-        catch (Exception ex){
-                System.out.println("File not found");
+            String baseMatrix = scn.nextLine();
+            String[] matList = baseMatrix.split("\\s+");
+            if (!firstComplete){
+                rows = Integer.parseInt(matList[0]);
+                col = Integer.parseInt(matList[1]);
+                
+                firstComplete = true;
                 }
+           
+            
+        }  
+      }  catch (Exception ex){
+                System.out.println("File not found");
+                }     
+        int [][] matrix = new int[rows][col];
+        File file = new File(filename);
+        Scanner scn = new Scanner(file);
+        scn.nextLine();
+        while (scn.hasNextLine()){
+            for (int j=0;j<matrix.length;++j){            
+                String baseMatrix = scn.nextLine();
+                String[] matList = baseMatrix.split("\\s+");
+                for (int i=0;i<matrix[0].length;++i){
+                    matrix[j][i] = Integer.parseInt(matList[i]);
+                    
+            }
+                    
         
+      
+      
     
-    
+        }
+        }
+      return matrix;
+      
+              
     /*
     10. Open the input file and create a Scanner object to read its content
     20. Read two values (rows and columns) from the first line, if possible
@@ -94,6 +130,7 @@ public class Ex3Driver {
     50. Split each line into individual tokens and put them into your array
     60. Return the array
     */
+  
   }
   /**
    * Multiply two matrices
@@ -102,6 +139,37 @@ public class Ex3Driver {
    * @return the resulting matrix
    */
   public static int[][] multiply(int[][] matrix1, int[][] matrix2) {
-    throw new UnsupportedOperationException();
+    int rows = 0;
+    int cols = 0;
+    for (int[] row: matrix1) {
+      for (int item: row) {
+        ++cols;
+      }
+      ++rows;
+    }
+    cols = cols / rows;
+    int rows1 = 0;
+    int cols1 = 0;
+    for (int[] row: matrix2) {
+      for (int item: row) {
+        ++cols;
+      }
+      ++rows;
+    }
+    cols1 = cols1 / rows1;
+    if (cols1 != rows){
+        if (rows1 != cols){
+            try{
+                throw new IllegalAccessException();
+            }
+            catch (Exception ex){
+                System.out.println("Uh oh, these matrices cannot be multiplied");
+                int[][] fake = new int[0][0];
+                return fake;
+            }
+        }
+    }
+    
+    return matrix2;
   }
 }

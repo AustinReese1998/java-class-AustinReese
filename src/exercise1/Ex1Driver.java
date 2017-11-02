@@ -14,15 +14,15 @@ public class Ex1Driver {
     for (int i = 0; i < 10; i++) {
       numbers[i] = rnd.nextInt(10);
     }
-    task1();
-    task2();
-    task3();
-    task4();
-    task5();
-    task6();
-    task7();
-    task8(numbers);
-    task9();
+  //  task1();
+ //   task2();
+ //   task3();
+ //   task4();
+ //   task5();
+ //   task6();
+ //   task7();
+ //   task8(numbers);
+ //   task9();
     task10();
   }
 
@@ -82,7 +82,7 @@ public class Ex1Driver {
    * TODO: Task 9: Ask a user to enter a word and write a function that tells if letters of a word are ordered (ie. "buy" would return true, while "bye" - false).
    * @return 
    */
-  public static boolean task9() {
+  public static void task9() {
     System.out.println("---Task 9---");
     int[][] table = new int[10][10];
     for (int i=0;i<=table.length;++i){
@@ -91,13 +91,27 @@ public class Ex1Driver {
             System.out.printf("%5s", table[i][j]);
         }
     }
-    return table;
   }
   /**
    * TODO: Task 10: Implement sieve of Eratosthenes and print all prime numbers between 1 and 100
    */
   public static void task10() {
-    throw new UnsupportedOperationException("Task 3 is not implemented yet.");
+    String poop = "{{1, 2, 3, 4}, {5, 6, 7, 8}}";
+    String[] array = poop.split("},");
+    int columns = 0;
+    int rows = 0;
+    for(int i = 0, len = array.length; i<len; i++){
+        rows++;
+        for (int j = 0, leng = array[i].length(); j<leng;++j){
+            if (Character.isDigit(array[i].charAt(j))){
+                columns++;
+            }
+        }
+    }
+    columns = columns / rows;
+    int[][] matrix = new int [columns][rows];
+            
+        
+            
   }
-
 }
