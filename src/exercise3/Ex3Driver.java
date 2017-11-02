@@ -33,7 +33,7 @@ public class Ex3Driver {
     if (matrix1[0].length == matrix2.length) {
       result = multiply(matrix1, matrix2);
     } else {
-      Logger.getLogger(Ex3Driver.class.getName()).log(Level.SEVERE, "{0}", "Impossible to multiply matrices");
+      Logger.getLogger(Ex3Driver.class.getName()).log(Level.SEVERE, "{0}", "Impossible to multiply matrices - columns and rows must be the same size");
       System.exit(0);
     }
     System.out.println("Result");
@@ -60,7 +60,7 @@ public class Ex3Driver {
       System.out.printf("%n");
     }
     cols = cols / rows;
-    System.out.printf("Matrix is %1d by %1d%n",cols,rows);
+    System.out.printf("Matrix is %1d by %1d%n",rows,cols);
   }
   /**
    * Write a matrix to the file
@@ -69,7 +69,23 @@ public class Ex3Driver {
    * @throws java.io.FileNotFoundException 
    */
   public static void writeMatrix(int[][] matrix, String filename) throws FileNotFoundException {
-    throw new UnsupportedOperationException();
+      File file = null;
+      try{
+          file = new File(filename);
+      }  catch (Exception ex){
+             Logger.getLogger(Ex3Driver.class.getName()).log(Level.SEVERE, "{0}", "Uh oh... write to file not founed");
+      }
+      PrintWriter write = new PrintWriter(file);
+      write.print(matrix.length + " ");
+      write.printf(matrix[0].length + "%n");
+      for (int[] row: matrix) {
+        for (int item: row) {
+        write.printf("%-5d", item);
+      }
+     write.printf("%n");
+    }
+    write.close();
+              
   }
   /**
    * Read a matrix from a file
@@ -98,7 +114,7 @@ public class Ex3Driver {
             
         }  
       }  catch (Exception ex){
-                System.out.println("File not found");
+                Logger.getLogger(Ex3Driver.class.getName()).log(Level.SEVERE, "{0}", "File not found");
                 }     
         int [][] matrix = new int[rows][col];
         File file = new File(filename);
@@ -112,13 +128,9 @@ public class Ex3Driver {
                     matrix[j][i] = Integer.parseInt(matList[i]);
                     
             }
-                    
+          }
+        }
         
-      
-      
-    
-        }
-        }
       return matrix;
       
               
@@ -139,37 +151,25 @@ public class Ex3Driver {
    * @return the resulting matrix
    */
   public static int[][] multiply(int[][] matrix1, int[][] matrix2) {
-    int rows = 0;
-    int cols = 0;
-    for (int[] row: matrix1) {
-      for (int item: row) {
-        ++cols;
-      }
-      ++rows;
-    }
-    cols = cols / rows;
-    int rows1 = 0;
-    int cols1 = 0;
-    for (int[] row: matrix2) {
-      for (int item: row) {
-        ++cols;
-      }
-      ++rows;
-    }
-    cols1 = cols1 / rows1;
-    if (cols1 != rows){
-        if (rows1 != cols){
-            try{
-                throw new IllegalAccessException();
+    System.out.println("Calculating...");
+    int rows = matrix1.length;
+    int cols = matrix2[0].length;
+    int [][] newMatrix = new int[rows][cols];
+    try{
+        for(int i = 0; i<newMatrix.length;++i){
+            for (int j=0; j<newMatrix[0].length;++j){
+                int foo = 0;
+                for (int k=0; k<matrix1[0].length;++k){
+                    int bar = matrix1[i][k] * matrix2[k][j];
+                    foo = foo + bar;
+                }
+                newMatrix[i][j] = foo;
+                }
             }
-            catch (Exception ex){
-                System.out.println("Uh oh, these matrices cannot be multiplied");
-                int[][] fake = new int[0][0];
-                return fake;
-            }
-        }
     }
-    
-    return matrix2;
-  }
+    catch (Exception ex){
+         Logger.getLogger(Ex3Driver.class.getName()).log(Level.SEVERE, "{0}", "Something has gone terrible wrong.....");
+    }
+    return newMatrix;
+}
 }
