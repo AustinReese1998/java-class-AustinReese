@@ -83,15 +83,7 @@ public class Ex1Driver {
    * @return 
    */
   public static boolean task9() {
-    System.out.println("---Task 9---");
-    int[][] table = new int[10][10];
-    for (int i=0;i<=table.length;++i){
-        for (int j=0;j<=table[0].length;++j){
-            table[i][j] = i*j;
-            System.out.printf("%5s", table[i][j]);
-        }
-    }
-    return table;
+      throw new UnsupportedOperationException("Task 9 is far from implemented");
   }
   /**
    * TODO: Task 10: Implement sieve of Eratosthenes and print all prime numbers between 1 and 100
