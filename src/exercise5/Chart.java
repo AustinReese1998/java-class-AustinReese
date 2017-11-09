@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -16,6 +17,30 @@ import java.util.regex.Pattern;
  * 
  * @author yasiro01
  */
+
 public class Chart {
 
+  private HashMap<Integer, Song> map = new HashMap<>();
+  
+  public Chart(String file) throws FileNotFoundException, IOException{
+      
+    BufferedReader br = new BufferedReader (new FileReader(file));
+    String line = br.readLine();
+    while (line != null){
+        String[] tune = line.split(",");
+        map.put(Integer.parseInt(tune[0]), new Song (tune[1], tune[2]));
+        line = br.readLine();
+        
+        
+    }
+        
+  
+    this.map = map;
+  
+  }
+  
+  public Song getSong(int num){
+      Song song = map.get(num);
+      return song;
+  }
 }

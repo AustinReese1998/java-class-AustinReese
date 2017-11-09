@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,5 +16,29 @@ import java.util.regex.Pattern;
  * @author yasiro01
  */
 public class Roster {
+
+  private ArrayList<Student> students = new ArrayList<>();
   
+  public Roster(String file) throws FileNotFoundException, IOException{
+      
+    BufferedReader br = new BufferedReader (new FileReader(file));
+    String line = br.readLine();
+    while (line != null){
+        String[] foo = line.split(",");
+        students.add(new Student (foo[0], foo[1], Double.parseDouble(foo[2])));
+        line = br.readLine();
+        
+        
+    }
+        
+  
+    this.students = students;
+  
+  }
+  
+  public void printRoster(){
+      for (Student student : students){
+          System.out.println(student.toString());
+      }
+  }
 }
