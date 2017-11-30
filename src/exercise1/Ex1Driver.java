@@ -14,23 +14,24 @@ public class Ex1Driver {
     for (int i = 0; i < 10; i++) {
       numbers[i] = rnd.nextInt(10);
     }
-    task1();
-    task2();
-    task3();
-    task4();
-    task5();
-    task6();
-    task7();
-    task8(numbers);
-    task9();
-    task10();
+ //   task1();
+ //   task2();
+ //   task3();
+ //   task4();
+ //   task5();
+ //   task6();
+ //   task7();
+ //   task8(numbers);
+ //   task9();
+ //   task10();
   }
 
   /**
    * TODO: Task 1: Print "Hello World" to the default system output
    */
   public static void task1() {
-    throw new UnsupportedOperationException("Task 1 is not implemented yet.");
+    throw new UnsupportedOperationException("Task 1 is bunk");
+             
   }
   /**
    * TODO: Task 2: Print all numbers between 1 and 100 (inclusive) replacing all multiples of 3 with "foo", multiples of 5 with "bar", multiples of 3 and 5 with "huh"
